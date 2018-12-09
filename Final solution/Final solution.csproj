@@ -67,8 +67,7 @@
   <ItemGroup>
     <Compile Include="Pages\HeaderOfEtsyCom.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tests\CountOfElementsWithFreeShipping.cs" />
-    <Compile Include="Tests\FindItemsWithDiscountAndCheckThatOldPriceAndDiscountMarkedGreenColor.cs" />
+    <Compile Include="Tests\TestsForSiteEtsyCom.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
