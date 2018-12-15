@@ -5,6 +5,8 @@ using OpenQA.Selenium.Chrome;
 using System;
 using System.Threading;
 using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Support.UI;
+using Final_solution.Utils;
 
 namespace Final_solution.Tests
 {
@@ -16,7 +18,7 @@ namespace Final_solution.Tests
         public void Setup()
         {
             driver = new ChromeDriver();
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             driver.Navigate().GoToUrl("https://www.etsy.com");
         }
 
@@ -31,10 +33,17 @@ namespace Final_solution.Tests
         {
             HeaderOfEtsyCom headerOfEtsyCom = new HeaderOfEtsyCom(driver);
             Actions actions = new Actions(driver);
-            actions.MoveToElement(headerOfEtsyCom.ClothingAndShoes).Build().Perform();
-            actions.MoveToElement(headerOfEtsyCom.ClothingAndShoesMens).Build().Perform();
+            WebElementHelpers webElementHelperes = new WebElementHelpers();
+            actions.MoveToElement(headerOfEtsyCom.ClothingAndShoes).Perform();
+            webElementHelperes.WaitElement(driver, headerOfEtsyCom.ClothingAndShoesMens, 10);
+
+            actions.MoveToElement(headerOfEtsyCom.ClothingAndShoesMens).Perform();
             headerOfEtsyCom.ClothingAndShoesMensBoots.Click();
-            Thread.Sleep(TimeSpan.FromSeconds(150));
+            int freeShippingElements = webElementHelperes.CountOfElements(driver, By.XPath("//*[@class='text-body-smaller no-wrap']"));
+            int freeShippingWithDiscountElements = webElementHelperes.CountOfElements(driver, By.XPath("//*[@class='text-body-smaller text-truncate']"));
+            int freeShippingGeneralCount = freeShippingElements + freeShippingWithDiscountElements;
+
+            Console.WriteLine(freeShippingGeneralCount);
         }
 
         //[Test]
