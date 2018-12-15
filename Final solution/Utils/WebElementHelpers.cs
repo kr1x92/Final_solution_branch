@@ -26,7 +26,25 @@ namespace Final_solution.Utils
             {
                 return -1000000000;
             }
-            
+        }
+
+        public void EnteringTextToField(IWebElement element, string text)
+        {
+            element.SendKeys(text);
+        }
+
+        public bool ElementIsPresent(IWebElement element, IWebDriver driver)
+        {
+            var present = false;
+            try
+            {
+                present = element.Displayed;
+                return true;
+            }
+            catch (NoSuchElementException)
+            {
+                return false;
+            }
         }
     }
 }
