@@ -15,5 +15,8 @@ namespace Final_solution.Pages
 
         [FindsBy(How = How.XPath, Using = "//*[@href='https://rozetka.com.ua/notebooks/asus/c80004/v004/']")]
         public IWebElement AsusFromLaptopsSection;
+
+        [FindsBy(How = How.XPath, Using = "//*[@class='header-actions__button header-actions__button_type_basket']")]
+        public IWebElement OpenCart;
     }
 }

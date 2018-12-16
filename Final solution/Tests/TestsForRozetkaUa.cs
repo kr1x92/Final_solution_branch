@@ -42,5 +42,17 @@ namespace Final_solution.Tests
             string actualText = driver.FindElement(By.CssSelector("h1")).GetAttribute("innerText");
             Assert.True(expectedText == actualText, $"Test Failed, because {expectedText} doesn't equal {actualText}. Please check.");
         }
+
+        [Test]
+        public void OutputTextToConsoleFromOpenCart()
+        {
+            RozetkaPage rozetkaPage = new RozetkaPage(driver);
+            Actions actions = new Actions(driver);
+            WebElementHelpers webElementHelpers = new WebElementHelpers();
+            webElementHelpers.WaitElement(driver, rozetkaPage.OpenCart, 10);
+            actions.MoveToElement(rozetkaPage.OpenCart).Perform();
+            string textFromCartForCw = driver.FindElement(By.XPath("//li[4]/div/div[1]/div/div/div[2]/p[@class='header-actions__dummy-text']")).GetAttribute("innerText");
+            Console.WriteLine(textFromCartForCw);
+        }
     }
 }
